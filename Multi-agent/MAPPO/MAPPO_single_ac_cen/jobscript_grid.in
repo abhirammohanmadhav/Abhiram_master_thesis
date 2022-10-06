@@ -1,0 +1,26 @@
+#!/bin/bash -x
+
+### Job name
+#SBATCH --job-name=ZFS
+
+### Account to be used
+#SBATCH --account=jara0203
+
+### File for the output
+#SBATCH --output=output.out
+
+#SBATCH --error=error.out
+
+### Time your job needs to execute, e. g. 30 min
+#SBATCH --time=00:30:00
+
+### Use one node for parallel jobs on shared-memory systems
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --ntasks-per-node=1
+
+module load LIBRARIES
+module load pnetcdf/1.11.0
+
+### Run your parallel application
+$MPIEXEC $FLAGS_MPI_BATCH /hpcwork/jara0203/RL/MAIA/Solver/src/maia properties_grid.toml

@@ -1,0 +1,10 @@
+noSegments = 2
+  
+ filename.0 = "globalBox.0"
+ filename.1 = "LS_Channel.0"
+
+ "body_segments.globalBox" = 0
+ "body_segments.LsChannel" = 1
+
+ BC.0 = 0
+ BC.1 = 2222
