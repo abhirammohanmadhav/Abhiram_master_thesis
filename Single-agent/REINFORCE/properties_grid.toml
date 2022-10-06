@@ -1,0 +1,38 @@
+# -------------- APPLICATION SETTINGS  --------------
+
+  flowSolver            = false
+  gridGenerator         = true
+  restartFile           = false
+  initRestart           = false
+  scratchSize           = 20.0
+  noSolvers              = 2
+
+  multiSolverGrid        = true
+# -------------- APPLICATION ENVIRONMENT  --------------
+
+  outputDir             = "out/"
+  geometryInputFileName = "geometry_grid.toml"
+  gridInputFileName     = "grid.Netcdf"
+  gridOutputFileName    = "grid.Netcdf"
+
+# -------------- SOLUTION PROPERTIES ----------------
+
+# -------------- SPATIAL DISCRETIZATION --------------
+
+  nDim     = 2
+  GFieldInitFromSTL = true
+  bodyBndryCndIds =  2222
+
+# -------------- TIME INTEGRATION --------------
+
+# ------------ FLOW VARIABLES & INITIALIZATION -----------
+
+# -------------- GRID AND REFINEMENT PROPERTIES --------------
+
+  maxNoCells               = 5000000
+  partitionCellOffspringThreshold           = 500000
+  minLevel = 7
+  maxUniformRefinementLevel     = 10
+  maxRfnmntLvl             = 10
+  maxBoundaryRfnLvl        = 10
+  noHaloLayers             = 1

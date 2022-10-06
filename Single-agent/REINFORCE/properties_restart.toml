@@ -1,0 +1,265 @@
+
+# -------------- APPLICATION SETTINGS  --------------
+  gridGenerator = false
+
+  flowSolver = true
+
+  restartFile = true
+
+  initRestart = false
+
+  fileProcessingMode = 0
+
+  scratchSize = 10.0
+
+##################################
+  multiSolverGrid    = true
+
+  multiSolver        = true
+
+  noGHaloLayers     = 2
+
+  writeLevelSetData = true
+##################################
+
+# -------------- MASSIVE PARALLEL  --------------
+
+  partitionCellOffspringThreshold = 50000
+
+# -------------- APPLICATION ENVIRONMENT  --------------
+
+
+
+ outputDir = "out/"
+
+ geometryPropertyFile = "geometry_restart.toml"
+
+ geometryInputFileName = "geometry_restart.toml"
+
+ gridInputFileName = "grid.Netcdf"
+
+ gridOutputFileName = "grid.Netcdf"
+
+ restartFileName = "restart_1800000.Netcdf" 
+
+##################################
+  solutionOutput             = "./out/"
+  levelSetRestartFileName    = "initialLevelSetField.Netcdf"
+##################################
+
+# -------------- FLOW VARIABLES --------------
+
+ Ma = 0.05
+
+ Re = 100
+
+ referenceLengthLB = 102.4
+
+ domainLengthLB = 1024.0
+
+ lbControlInflow = 0
+
+ inflowSegmentIds = 0
+
+ initialVelocityVectors = [1.0, 0.0,
+			1.0, 0.0]
+
+ initVelocityMethod = "read"
+
+ bndNormalVectors = [-1.0, 0.0,
+		  1.0, 0.0]
+
+ bndNormalMethod = "read"
+
+ externalForcing = false
+
+# -------------- NUMERICAL PROPERTIES --------------
+
+ dualTimeStepping = false
+
+ timeSteps = 150000
+
+ rho1 = 1.0
+
+ rho2 = 1.0
+
+ lb = true
+
+ levelSet = true
+
+ initMethod = "LB_LAMINAR_INIT_PX"
+
+ solvertype.default = "MAIA_UNIFIED"
+
+ executionRecipe = "RECIPE_INTRASTEP"
+
+##################################
+ solvertype.0 = "MAIA_LEVELSET_SOLVER"
+ solvertype.1 = "MAIA_LATTICE_BOLTZMANN"
+
+ solverOrder_0 = [0,0]
+ solverOrder_1 = [0,1] 
+
+ couplerOrder_0 = [1,1]
+
+ adaptationOrder = [0,1]
+
+ recipeMaxNoSteps = 2 # necessary ? length of some array ?
+
+ couplerType_0 = "COUPLER_LS_LB"
+
+ solversToCouple_0 = [0,1]
+
+ noCouplers = 1
+
+ solverMethod.default             = ""
+ solverMethod.1                   = "MAIA_LATTICE_BGK_THERMAL"    #siehe Testcases LBM
+ solverMethod.0                   = "MAIA_SEMI_LAGRANGE_LEVELSET_LB"
+##################################
+
+ densityFluctuations = false
+
+ noDistributions = 9
+
+ noDomains = 1
+
+ noSolvers = 2
+
+ noHaloLayers = 2
+
+ movingBoundaryLS = true
+
+# -------------- GRID AND REFINEMENT PROPERTIES --------------
+
+ nDim = 2
+
+ minLevel = 7
+
+ reductionFactor = 1.0
+
+ gridCutTest = "SAT"
+
+ inOutTest = "perpOp"
+
+ maxUniformRefinementLevel = 10
+
+ maxRfnmntLvl = 10
+
+ maxBoundaryRfnLvl = 10
+
+ maxGCellLevel     = 10 #8
+
+ interfaceMethod = "FILIPPOVA"
+
+ maxNoCells = 100000
+ maxNoGCells = 100000 
+
+ multiBCTreatment = "I-W-P"
+
+##################################
+ noStaticLevelSet = 1
+ noMovingLevelSet = 0
+ calculateWallForces = true
+ complexBoundaryForMb = true
+ bounceBackSchemeMb = "BOUZIDI_LINEAR"
+##################################
+# -------------- SOLUTION PROPERTIES ----------------
+
+ solutionInterval = 40000000
+
+ residualInterval = 80000000
+
+ restartTimeStep = 1800000 
+
+ restartInterval = 150000
+
+##################################
+ levelSetSolutionInterval = 10000
+##################################
+
+#//////////////////////////////////
+#////// testcase settings//////////
+#//////////////////////////////////
+ cfl               = 1
+ timeStepMethod     = 1
+
+ initialCondition = 0
+#//////////////////////////////////
+#///// level-set settings ////////
+#//////////////////////////////////
+
+# basic level-set solution properties:
+#----------------------------------------
+ levelSetDiscretizationScheme = "BACKWARDS_PAR"
+ adaptLevelSetExtensionScheme = 0
+
+ gBandWidth   = 20 #3
+ gShadowWidth = 22
+ gInnerBound  = 2 #1
+
+ levelSetBC       = "NONE"
+ levelSetTestCase = 0
+
+ initFromRestartFile          = false
+ writeOutAllLevelSetFunctions = true
+
+ reinitMethod                 = "NONE"
+ gReinitIterations            = 50
+ reinitConvergence            = 0.0000000001
+ reinitThreshold              = 0.000000005
+ reinitCFL                    = 0.05
+ omegaReinit                  = 1
+ guaranteeReinit              = true
+
+# init from STL:
+#----------------------------------------
+ GFieldInitFromSTL                 = true
+ GFieldFromSTLInitCheck            = true
+ GFieldFromSTLInitMode             = 1
+ gReinitIterationsForGFieldFromSTL = 1
+ bodyBndryCndIds                   = 2222
+
+# multi lvs:
+#----------------------------------------
+ buildCollectedLevelSetFunction = false #true
+ maxNoLevelSets                 = 1
+ levelSetSign                   = -1
+ computeSet                     = true
+ bodyToSetMode                  = 6
+ nodifferentSets                = 1
+ bodiesinSet                    = 1
+
+
+# body motion functions:
+#----------------------------------------
+
+ initialInsidePoints = [10.0, 10.0]
+ initialBodyCenters  = [0.0,  0.0]
+
+ Strouhal              = 0.003
+ amplitudes            = 0.00
+ freqFactors           = 1.0
+ bodyMovementFunctions = 1
+ bodyMotionNormals     = [1.0, 0.0]
+ liftStartAngles1      = 0.0
+ liftEndAngles1        = 0.0
+
+#----------------------------------------
+
+ nogRKSteps        = 1
+ grkalpha-step     = [1.0, 0.25, 0.6666666666666666, 0.5, 1]
+ gRKMethod         = 5
+ extVelConvergence = 0.00001
+
+#//////////////////////////////////
+#/// moving boundary settings /////
+#//////////////////////////////////
+
+ trackMovingBndry     = true
+ constructGField      = false
+ movingBndryCndId     = 3060     #3060 initilizes the tangential velocity of the moving body as as the boundary condition,
+                                  #3006 or any other initilizes the rotational velocity of the moving body as the boundary condition!
+ bodyTypeMb           = 0
+ bodyFaceJoinMode     = 1
+
+ closeGaps=false
