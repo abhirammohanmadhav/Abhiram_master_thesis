@@ -1,0 +1,30 @@
+#!/bin/bash -x
+
+### Job name
+#SBATCH --job-name=T1mactac
+
+### Account to be used
+#SBATCH --account=jara0203
+
+### File for the output
+#SBATCH --output=output.out
+
+#SBATCH --error=error.out
+
+### Time your job needs to execute, e. g. 30 min
+#SBATCH --time=24:00:00
+
+### Use one node for parallel jobs on shared-memory systems
+#SBATCH --nodes=16
+#SBATCH --ntasks=640
+#SBATCH --ntasks-per-node=40
+
+module load LIBRARIES
+module load pnetcdf/1.11.0
+
+source /hpcwork/jara0203/envs/rl-env/bin/activate
+
+python /hpcwork/jara0203/Abhiram/ACTOR-CRITIC/MAA2C/Try1_MAA2C/maa2c.py
+
+### Run your parallel application
+### $MPIEXEC $FLAGS_MPI_BATCH /hpcwork/jara0203/MAIA/Solver/src/maia properties_restart.toml
